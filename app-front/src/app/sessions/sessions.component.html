@@ -1,0 +1,37 @@
+<mat-table [dataSource]="sessions" class="sessions">
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef>{{'id' | translate}}</mat-header-cell>
+    <mat-cell *matCellDef="let session">{{session.id}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>{{'name' | translate}}</mat-header-cell>
+    <mat-cell *matCellDef="let session">{{session.name}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="creator">
+    <mat-header-cell *matHeaderCellDef>
+      <label for="madeByU">{{'creator' | translate}}{{'checkMadeByU' | translate}}</label><mat-checkbox id="madeByU" (change)="refresh()" [(ngModel)]="ofCreator"></mat-checkbox></mat-header-cell>
+    <mat-cell *matCellDef="let session">{{session.creator}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="createdDate">
+    <mat-header-cell *matHeaderCellDef>{{'createdDate' | translate}}</mat-header-cell>
+    <mat-cell *matCellDef="let session">{{session.createdDate | slice:0:10}}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns" [routerLink]="'/session-detail/' + row.id"></mat-row>
+</mat-table>
+<div class="all-div">
+  <div>
+    <label for="Page number">{{'pageNum' | translate}}</label>
+    <input id="Page number" type="number" (change)="refresh()" [(ngModel)]="pageNumber"/>
+  </div>
+  <div>
+    <label for="Page size">{{'pageSize' | translate}}</label>
+    <input id="Page size" type="number" (change)="refresh()" [(ngModel)]="pageSize"/>
+  </div>
+  <p>{{'maxPage' | translate}}{{maxPage}}</p>
+</div>
+

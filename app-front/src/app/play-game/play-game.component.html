@@ -1,0 +1,29 @@
+<div *ngIf="openGame" class="all-div">
+
+  <h2>{{'playGame' | translate:{'name':openGame.name} }}</h2>
+  <b>{{'remainingFunds' | translate:{'remainingFunds':remainingFunds} }}</b>
+  <br/>
+  <b>{{'secLeft' | translate:{'timeLeft':timeLeft} }}</b>
+  <div *ngFor="let bet of companyBets">
+    <div>
+      <label for="Funds spent">{{'spendOnCompany' | translate:{'company':bet.companyAbbreviation | uppercase} }}</label>
+      <input name="Funds spent" id="Funds spent" type="number" [(ngModel)]="bet.moneySpent" (ngModelChange)="onChange()"/>
+    </div>
+    <mat-form-field>
+      <mat-select style="width:250px;" placeholder="{{'buy' | translate}}" [(ngModel)]="bet.dayBuying" >
+        <mat-option *ngFor="let day of sessionDays" [value]="day" >{{day}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select style="width:250px;" placeholder="{{'sell' | translate}}" [(ngModel)]="bet.daySelling" >
+        <mat-option *ngFor="let day of sessionDays" [value]="day" >{{day}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <br/>
+  <button mat-button (click)="save()">{{'create' | translate}}</button>
+  <button mat-button (click)="goBack()">{{'back' | translate}}</button>
+</div>
+<div *ngIf="!openGame" class="all-div">
+  <button mat-button (click)="goBack()">{{'back' | translate}}</button>
+</div>

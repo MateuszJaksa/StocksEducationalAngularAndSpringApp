@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+  postgres:
+      image: postgres:14
+      environment:
+        - POSTGRES_DB=database
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=password
+        - PGDATA=/var/lib/postgresql/data/pgdata
+      volumes:
+        - app_volume:/var/lib/postgresql/data
+  backend:
+      image: back:latest
+      ports:
+        - 8090:8090
+        - 9090:9090
+      environment:
+        - DB_HOST=postgres
+        - DB_PORT=5432
+        - DB_NAME=database
+        - DB_USER=postgres
+        - DB_PASSWD=password
+        - IP=INSERT YOUR IP HERE
+      depends_on:
+        - postgres
+  frontend:
+      image: front:latest
+      ports:
+        - 4200:80
+      environment:
+        - IP=INSERT YOUR IP HERE
+      depends_on:
+        - postgres
+  keycloak:
+      image: quay.io/keycloak/keycloak:11.0.2
+      volumes:
+        - ./imports:/opt/jboss/keycloak/imports
+      command: 
+        - "-b 0.0.0.0 -Dkeycloak.import=/opt/jboss/keycloak/imports/realm-export.json"
+      environment:
+        DB_VENDOR: POSTGRES
+        DB_ADDR: postgres
+        DB_DATABASE: database
+        DB_USER: postgres
+        DB_SCHEMA: public
+        DB_PASSWORD: password
+        KEYCLOAK_USER: admin
+        KEYCLOAK_PASSWORD: admin
+      ports:
+        - 8080:8080
+      depends_on:
+        - postgres
+volumes:
+  app_volume:

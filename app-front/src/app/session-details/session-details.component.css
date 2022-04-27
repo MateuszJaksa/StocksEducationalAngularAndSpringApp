@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Eczar:wght@500&display=swap');
+.all-div {
+  font-family: 'Eczar', serif;
+}
+
+.list-output {
+  font-size: 120%;
+  font-family: 'Eczar', serif;
+}
+
+button {
+  font-size: 180%;
+  font-family: 'Eczar', serif;
+}
+
+

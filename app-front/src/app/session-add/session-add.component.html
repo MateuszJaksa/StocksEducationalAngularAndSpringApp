@@ -1,0 +1,36 @@
+<div *ngIf="session" class="all-div">
+  <h2>{{'addSession' | translate}}</h2>
+  <div>
+    <div class="form-group">
+      <label for="Title">{{'title' | translate}}</label>
+      <input id="Title" type="text" [(ngModel)]="session.name" placeholder="{{'title' | translate}}" />
+    </div>
+    <div class="form-group">
+      <label for="DescriptionEN">{{'descriptionEN' | translate}}</label>
+      <input id="DescriptionEN" class="description" type="text" [(ngModel)]="session.descriptionEN" placeholder="{{'descriptionEN' | translate}}" />
+    </div>
+    <div class="form-group">
+      <label for="DescriptionPL">{{'descriptionPL' | translate}}</label>
+      <input id="DescriptionPL" class="description" type="text" [(ngModel)]="session.descriptionPL" placeholder="{{'descriptionPL' | translate}}" />
+    </div>
+    <div class="form-group">
+      <label for="Starting date">{{'startingDate' | translate}}</label>
+      <input id="Starting date" type="date" [(ngModel)]="session.startingDate"/>
+    </div>
+    <div class="form-group">
+      <label for="Ending date">{{'endingDate' | translate}}</label>
+      <input id="Ending Date" type="date" [(ngModel)]="session.endingDate"/>
+    </div>
+    <div class="form-group">
+      <label for="Funds">{{'funds' | translate}}</label>
+      <input id="Funds" type="number" [(ngModel)]="session.funds"/>
+    </div>
+    <h3>{{'notAddedCompanies' | translate}}</h3>
+    <button class="list-button" mat-button *ngFor="let company of notAddedCompanies" (click)="addCompany(company)">{{company.fullName}}</button>
+    <h3>{{'addedCompanies' | translate}}</h3>
+    <button class="list-button" mat-button *ngFor="let company of addedCompanies" (click)="removeCompany(company)">{{company.fullName}}</button>
+  </div>
+  <br/>
+  <button mat-button (click)="goBack()">{{'back' | translate}}</button>
+  <button mat-button (click)="save()">{{'create' | translate}}</button>
+</div>

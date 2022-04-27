@@ -1,0 +1,20 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~ngx-toastr/toastr.css';
+@import url('https://fonts.googleapis.com/css2?family=Eczar:wght@500&display=swap');
+html {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  height: 89%;
+}
+
+.footer {
+  background-color: #DCDCDC;
+  text-align: right;
+  padding-right: 20px;
+  position: fixed;
+  width: 100%;
+  height: 4%;
+}

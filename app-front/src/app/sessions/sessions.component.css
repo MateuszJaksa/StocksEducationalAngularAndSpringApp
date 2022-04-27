@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Eczar:wght@500&display=swap');
+.sessions {
+  font-family: 'Eczar', serif;
+  padding: 0;
+  cursor: pointer;
+}
+
+.all-div {
+  font-family: 'Eczar', serif;
+}

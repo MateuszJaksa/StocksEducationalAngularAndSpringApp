@@ -1,0 +1,20 @@
+<div *ngIf="session" class="all-div">
+
+  <h2>{{'gameDetails' | translate:{'name':session.name} }}</h2>
+  <div>
+    <p>{{'gameName' | translate:{'name':session.name} }}</p>
+    <p>{{'gameCreator' | translate:{'creator':session.creator} }}</p>
+    <p *ngIf="langString == 'en'">{{'description' | translate}}{{session.descriptionEN}}</p>
+    <p *ngIf="langString == 'pl'">{{'description' | translate}}{{session.descriptionPL}}</p>
+    <p>{{'startingDate' | translate}}{{session.startingDate}}</p>
+    <p>{{'endingDate' | translate}}{{session.endingDate}}</p>
+    <p>{{'funds' | translate}}{{session.funds}}</p>
+    <p>{{'gameCreatedDate' | translate:{'createdDate':session.createdDate | slice:0:10} }}</p>
+  </div>
+  <h2>{{'companies' | translate}}</h2>
+  <p class="list-output" *ngFor="let company of session.companies">
+    {{company.fullName | uppercase }}
+  </p>
+  <br/>
+  <button mat-button (click)="goBack()">{{'back' | translate}}</button>
+</div>

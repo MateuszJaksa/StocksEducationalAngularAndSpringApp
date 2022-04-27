@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Eczar:wght@500&display=swap');
+.all-div {
+  font-family: 'Eczar', serif;
+}
+
+.list-output {
+  font-size: 120%;
+  font-family: 'Eczar', serif;
+}
+
+button {
+  font-size: 180%;
+  font-family: 'Eczar', serif;
+}
+
+a {
+  font-size: 180%;
+  font-family: 'Eczar', serif;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+
+#parent-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centered {
+  margin: 0 auto;
+}
+
+tr:nth-child(even) {
+  background-color: darkgray;
+}
+
+tr:nth-child(odd) {
+  background-color: gray;
+}

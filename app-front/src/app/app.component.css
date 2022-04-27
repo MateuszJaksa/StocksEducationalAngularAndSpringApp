@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Eczar:wght@500&display=swap');
+.homeButton{
+  font-size: 150%;
+}
+
+.mat-toolbar{
+  height: 7vh;
+}
+
+.mat-sidenav-container{
+  background-color: #DCDCDC;
+  min-height: 93vh;
+}
+
+a{
+  text-decoration: none;
+  font-size: 110%;
+  white-space: normal;
+  font-family: 'Eczar', serif;
+}
+
+button{
+  font-size: 110%;
+  min-width: min-content;
+  font-family: 'Eczar', serif;
+}
+
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-sidenav-content{
+  font-size: 200%;
+  text-align: center;
+}
+
+span {
+  font-family: 'Eczar', serif;
+}

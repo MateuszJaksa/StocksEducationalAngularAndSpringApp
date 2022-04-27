@@ -1,0 +1,43 @@
+<mat-table [dataSource]="openGames" class="open-games" xmlns="http://www.w3.org/1999/html">
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef>{{'id' | translate}}</mat-header-cell>
+    <mat-cell *matCellDef="let openGame">{{openGame.id}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>{{'name' | translate}}</mat-header-cell>
+    <mat-cell *matCellDef="let openGame">{{openGame.name}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="creator">
+    <mat-header-cell *matHeaderCellDef>
+      <label for="ofParticipant">{{'creator' | translate}}{{'checkOfParticipant' | translate}}</label><mat-checkbox id="ofParticipant" (change)="refresh()" [(ngModel)]="areOfParticipant"></mat-checkbox></mat-header-cell>
+    <mat-cell *matCellDef="let openGame">{{openGame.creator}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="createdDate">
+    <mat-header-cell *matHeaderCellDef>{{'createdDate' | translate}}</mat-header-cell>
+    <mat-cell *matCellDef="let openGame">{{openGame.createdDate | slice:0:10 }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="isFinished">
+    <mat-header-cell *matHeaderCellDef>
+      <label for="open">{{'isFinished' | translate}}{{'checkOpen' | translate}}</label><mat-checkbox id="open" (change)="refresh()" [(ngModel)]="areOpen"></mat-checkbox></mat-header-cell>
+    <mat-cell *matCellDef="let openGame"><mat-icon *ngIf="openGame.isFinished">check_circle_outline</mat-icon> <mat-icon *ngIf="!openGame.isFinished">highlight_off</mat-icon></mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+  <mat-row *matRowDef="let row; columns: displayedColumns" [routerLink]="'/game-detail/' + row.id"></mat-row>
+</mat-table>
+<div class="all-div">
+  <div>
+    <label for="Page number">{{'pageNum' | translate}}</label>
+    <input id="Page number" type="number" (change)="refresh()" [(ngModel)]="pageNumber"/>
+  </div>
+  <div>
+    <label for="Page size">{{'pageSize' | translate}}</label>
+    <input id="Page size" type="number" (change)="refresh()" [(ngModel)]="pageSize"/>
+  </div>
+  <p>{{'maxPage' | translate}}{{maxPage}}</p>
+</div>

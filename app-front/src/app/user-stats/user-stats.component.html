@@ -1,0 +1,43 @@
+<div *ngIf="userStats" class="user-stats">
+  <h2>{{'userStats' | translate:{'username':userStats.username} }}</h2>
+  <table class="centered">
+    <tbody>
+    <tr>
+      <td>{{'gPlayedNum' | translate}}</td>
+      <td>{{userStats.gamesPlayed}}</td>
+    </tr>
+    <tr>
+      <td>{{'gTotalScore' | translate}}</td>
+      <td>{{userStats.totalScore | number:'1.2-2'}}</td>
+    </tr>
+    <tr>
+      <td>{{'gOnceScore' | translate}}</td>
+      <td>{{userStats.highestScore | number:'1.2-2'}}</td>
+    </tr>
+    <tr>
+      <td>{{'gAverScore' | translate}}</td>
+      <td>{{userStats.averageScore | number:'1.2-2'}}%</td>
+    </tr>
+    </tbody>
+  </table>
+  <button mat-button (click)="goBack()">{{'back' | translate}}</button>
+</div>
+<div *ngIf="userBests.length > 0">
+  <p> {{'userBests' | translate}}</p>
+  <table class="centered">
+    <tbody>
+    <tr>
+      <td>{{'score' | translate}}</td>
+      <td>{{'gameId' | translate}}</td>
+      <td>{{'name' | translate}}</td>
+      <td>{{'sessionName' | translate}}</td>
+    </tr>
+    <tr *ngFor="let best of userBests">
+      <td>{{best.score | number:'1.2-2'}}</td>
+      <td>{{best.gameId}}</td>
+      <td>{{best.name}}</td>
+      <td>{{best.sessionName}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

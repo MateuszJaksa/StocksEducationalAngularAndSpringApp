@@ -1,0 +1,54 @@
+<div *ngIf="openGame" class="all-div">
+
+  <h2>{{'gameDetails' | translate:{'name':openGame.name} }}</h2>
+  <p>{{'gameName' | translate:{'name':openGame.name} }}</p>
+  <p>{{'gameCreator' | translate:{'creator':openGame.creator} }}</p>
+  <p>{{'timeGuessInS' | translate:{'time':openGame.timeToGuessInSeconds} }}</p>
+  <h3>{{'users' | translate}}</h3>
+  <p *ngFor="let user of openGame.usersInGameNames" >{{user}}</p>
+  <p>{{'gameCreatedDate' | translate:{'createdDate':openGame.createdDate | slice:0:10} }}</p>
+  <a mat-button routerLink="/session-detail/{{openGame.session.id}}">{{'gameSesName' | translate:{'name':openGame.session.name} }}</a>
+  <p>{{'isFinished' | translate}}<mat-icon *ngIf="openGame.isFinished">check_circle_outline</mat-icon> <mat-icon *ngIf="!openGame.isFinished">highlight_off</mat-icon></p>
+  <br/>
+  <a *ngIf="!openGame.isFinished || !gameResults" mat-button routerLink="/play-game/{{openGame.id}}">{{'playGame' | translate:{'name':openGame.name} }}<mat-icon>trending_up</mat-icon></a>
+  <br/>
+  <div *ngIf="!openGame.isFinished || !gameResults">
+    <p>{{'waitAlert' | translate}}</p>
+  </div>
+  <div *ngIf="openGame.isFinished && gameResults">
+    <p *ngIf="gameResults.yourScore >= 0">{{'goodJob' | translate}}</p>
+    <p *ngIf="gameResults.yourScore < 0">{{'badJob' | translate}}</p>
+    <table class="centered">
+      <tbody>
+      <tr [ngClass]="{'positive' : gameResults.yourScore > 0, 'negative' : gameResults.yourScore < 0}">
+        <td>{{'finalResults' | translate}}</td>
+        <td>{{gameResults.yourScore | number:'1.2-2'}}</td>
+      </tr>
+      <tr>
+        <td>{{'resultsChange' | translate}}</td>
+        <td>{{(gameResults.yourScore / openGame.session.funds) | number:'1.2-2'}}%</td>
+      </tr>
+      <ng-container *ngFor="let user of gameResults.otherResultsWithUsernames">
+        <tr *ngIf="user.result != 0">
+          <td>{{'anUserResult' | translate:{'username':user.username} }}</td>
+          <td>{{user.result | number:'1.2-2'}}</td>
+        </tr>
+      </ng-container>
+      <tr>
+        <td>{{'bondResult' | translate}}</td>
+        <td>{{gameResults.bondsResult | number:'1.2-2'}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <button *ngIf="!isGraphDisplayed" mat-button (click)="showGraph()">{{'graphShow' | translate}}</button>
+    <div id="parent-container" *ngIf="isGraphDisplayed && chartData">
+      <app-chart [data]="chartData"></app-chart>
+      <p>{{'bestResult' | translate:{'earnings':gameResults.bestResults.earnings | number:'1.2-2',
+        'companyName':gameResults.bestResults.companyName, 'buyDate':gameResults.bestResults.buyDate,
+        'sellDate':gameResults.bestResults.sellDate} }}</p>
+      <p *ngIf="isBestResultShortSold">{{'shortSell' | translate}}</p>
+    </div>
+  </div>
+  <br/>
+  <button mat-button (click)="goBack()">{{'back' | translate}}</button>
+</div>

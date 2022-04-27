@@ -1,0 +1,47 @@
+<mat-toolbar color="primary">
+  <div fxShow="true" fxHide.gt-sm="true">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+
+  <a mat-button class="homeButton" routerLink="/">
+    <span>App Front</span>
+  </a>
+  <span class="example-spacer"></span>
+  <div fxShow="true" fxHide.lt-md="true">
+    <span *ngIf="isLoggedIn">{{'helloUser' | translate:{'username':userProfile?.username} }}</span>
+    <button mat-button (click)="useLanguage('en')">EN</button>
+    <button mat-button (click)="useLanguage('pl')">PL</button>
+    <a mat-button *ngIf="isLoggedIn" routerLink="/sessions">{{'sessions' | translate}}</a>
+    <a mat-button *ngIf="isLoggedIn" routerLink="/session-add">{{'addSession' | translate}}</a>
+    <a mat-button *ngIf="isLoggedIn" routerLink="/open-games">{{'openGames' | translate}}</a>
+    <a mat-button *ngIf="isLoggedIn" routerLink="/game-add">{{'addGame' | translate}}</a>
+    <a mat-button *ngIf="isLoggedIn" routerLink="/user-stats">{{'seeStats' | translate}}</a>
+    <a mat-button *ngIf="!isLoggedIn" routerLink="/register">{{'register' | translate}}</a>
+    <button mat-button *ngIf="isLoggedIn" style="outline: none" (click)="logout()">{{'logOut' | translate}}</button>
+    <button mat-button *ngIf="!isLoggedIn" style="outline: none" (click)="login()">{{'logIn' | translate}}</button>
+  </div>
+
+</mat-toolbar>
+<mat-sidenav-container fxFlexFill class="example-container">
+  <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
+    <div fxLayout="column">
+      <button mat-button (click)="useLanguage('en')">EN</button>
+      <button mat-button (click)="useLanguage('pl')">PL</button>
+      <a mat-button *ngIf="isLoggedIn" routerLink="/sessions">{{'sessions' | translate}}</a>
+      <a mat-button *ngIf="isLoggedIn" routerLink="/session-add">{{'addSession' | translate}}</a>
+      <a mat-button *ngIf="isLoggedIn" routerLink="/open-games">{{'openGames' | translate}}</a>
+      <a mat-button *ngIf="isLoggedIn" routerLink="/game-add">{{'addGame' | translate}}</a>
+      <a mat-button *ngIf="isLoggedIn" routerLink="/user-stats">{{'seeStats' | translate}}</a>
+      <a mat-button *ngIf="!isLoggedIn" routerLink="/register">{{'register' | translate}}</a>
+      <button mat-button *ngIf="isLoggedIn" style="outline: none" (click)="logout()">{{'logOut' | translate}}</button>
+      <button mat-button *ngIf="!isLoggedIn" style="outline: none" (click)="login()">{{'logIn' | translate}}</button>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content fxFlexFill>
+    <router-outlet></router-outlet>
+    <br/>
+    <app-facts></app-facts>
+  </mat-sidenav-content>
+</mat-sidenav-container>

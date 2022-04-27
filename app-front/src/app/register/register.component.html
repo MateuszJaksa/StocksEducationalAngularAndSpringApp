@@ -1,0 +1,15 @@
+<div *ngIf="user" class="all-div">
+  <h2>{{'register' | translate}}</h2>
+  <div>
+    <label for="Username">{{'username' | translate}}</label>
+    <input id="Username" type="text" [(ngModel)]="user.username" placeholder="{{'username' | translate}}"/>
+  </div>
+  <div>
+    <label for="Password">{{'password' | translate}}</label>
+    <input id="Password" type="password" [(ngModel)]="user.password" placeholder="{{'password' | translate}}"/>
+  </div>
+  <br/>
+  <button mat-button (click)="goBack()">{{'back' | translate}}</button>
+  <br/>
+  <button mat-button (click)="save()">{{'create' | translate}}</button>
+</div>
